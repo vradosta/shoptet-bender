@@ -10,6 +10,7 @@ command
   .option('-w, --watch', 'watch for changes and reload the page', true)
   .option('-b, --blankMode', 'simulate the blank template.', false)
   .option('-n, --notify', 'display pop-over notifications in the browser', false)
+  .option('-s, --ssl', 'enable HTTPS via local-ip.co (optional)')
   .option('-rh, --removeHeaderIncludes [removeHeaderIncludes...]', 'remove header includes', false)
   .option('-rf, --removeFooterIncludes [removeFooterIncludes...]', 'remove footer includes', false);
 

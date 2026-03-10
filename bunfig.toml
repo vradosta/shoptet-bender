@@ -1,0 +1,29 @@
+# Bun configuration for shoptet-bender-ssl
+# https://bun.sh/docs/runtime/bunfig
+
+[install]
+# Use exact versions instead of semver ranges
+exact = false
+
+# Enable peer dependency installation
+peer = true
+
+# Registry configuration
+registry = "https://registry.npmjs.org/"
+
+# Cache directory (optional - Bun uses default if not specified)
+# cache = "node_modules/.cache/bun"
+
+[install.lockfile]
+# Save lockfile
+save = true
+
+# Print verbose installation output
+print = "yarn"
+
+[run]
+# Use Bun's faster runtime instead of Node.js
+bun = true
+
+# Shell to use for shell scripts (bun or system)
+shell = "bun"

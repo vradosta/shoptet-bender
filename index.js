@@ -8,6 +8,7 @@ import path from 'path';
 import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
 import webpack from 'webpack';
 import getWebpackConfig from './webpack.config.js';
+import { getLocalIpCoUrl, getSslCertPaths, sslCertsExist } from './lib/ssl-utils.js';
 
 command.parse(process.argv);
 
@@ -87,6 +88,28 @@ const rewriteRules = [
   { ...(options.blankMode && blankModeScript) },
 ];
 
+// SSL configuration
+// CLI flag takes precedence over config file
+const sslEnabled = options.ssl ?? config.ssl ?? false;
+let httpsConfig = false;
+
+if (sslEnabled) {
+  if (!sslCertsExist()) {
+    console.error('❌ SSL certificates not found in certs/ directory.');
+    console.error('Please download them from: https://local-ip.co');
+    process.exit(1);
+  }
+  const certPaths = getSslCertPaths();
+  httpsConfig = {
+    key: certPaths.key,
+    cert: certPaths.cert,
+    ca: certPaths.ca,
+  };
+  console.log('🔒 SSL enabled via local-ip.co');
+  console.log('📍 Local access: https://127-0-0-1.my.local-ip.co:3010');
+  console.log('📍 Network access:', getLocalIpCoUrl(3010));
+}
+
 const bsPlugin = [
   new BrowserSyncPlugin({
     proxy: { target: options.remote ?? config.defaultUrl },
@@ -95,6 +118,7 @@ const bsPlugin = [
     port: 3010,
     notify: options.notify,
     open: false,
+    https: httpsConfig,
   }),
 ];
 

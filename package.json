@@ -6,10 +6,15 @@
   "bin": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
     "format": "prettier --check .",
-    "format:fix": "prettier --write ."
+    "format:fix": "prettier --write .",
+    "test:ssl": "node test-ssl-utils.js",
+    "dev": "node index.js"
   },
+  "trustedDependencies": [
+    "esbuild",
+    "lightningcss"
+  ],
   "author": "Shoptet",
   "license": "ISC",
   "dependencies": {
@@ -18,11 +23,11 @@
     "babel-loader": "^9.1.3",
     "browser-sync": "^3.0.3",
     "browser-sync-webpack-plugin": "^2.3.0",
-    "commander": "^9.4.0",
+    "commander": "^12.1.0",
     "css-loader": "^6.10.0",
     "css-minimizer-webpack-plugin": "^6.0.0",
     "file-loader": "^6.2.0",
-    "glob": "^10.3.10",
+    "glob": "^11.1.0",
     "javascript-obfuscator": "^4.1.0",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",

@@ -1,5 +1,6 @@
 {
     "defaultUrl": "https://classic.shoptet.cz/",
     "sourceFolder": "./src",
-    "outputFolder": "./dist"
+    "outputFolder": "./dist",
+    "ssl": false
 }
